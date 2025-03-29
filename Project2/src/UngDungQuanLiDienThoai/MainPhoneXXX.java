@@ -2,6 +2,7 @@ package UngDungQuanLiDienThoai;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Comparator;
 
 public class MainPhoneXXX {
 
@@ -257,8 +258,10 @@ public class MainPhoneXXX {
 
                 switch (choose) {
                     case 1:
+                        sortByPriceAscending();
                         break;
                     case 2:
+                        sortByPriceDescending();
                         break;
                     case 3:
                         return;
@@ -268,6 +271,19 @@ public class MainPhoneXXX {
             } while (choose < 0 || choose > 3);
         }
     }
+    private static void sortByPriceAscending() {
+        oldPhones.sort(Comparator.comparingDouble(OldPhone::getPrice));
+        newPhones.sort(Comparator.comparingDouble(NewPhone::getPrice));
+        System.out.println("Danh sach dien thoai da duoc sap xep tang dan theo gia!");
+        menuShowList();
+    }
+    private static void sortByPriceDescending() {
+        oldPhones.sort(Comparator.comparingDouble(OldPhone::getPrice).reversed());
+        newPhones.sort(Comparator.comparingDouble(NewPhone::getPrice).reversed());
+        System.out.println("Danh sach dien thoai da duoc sap xep giam dan theo gia!");
+        menuShowList();
+    }
+
 
     private static void menuSearch() {
         int choose;
